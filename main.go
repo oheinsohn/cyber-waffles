@@ -23,8 +23,9 @@ func main() {
 	displayScope()
 }
 
+// TODO: output to logging
 func displayScope() {
-	scope, err := readScope()
+	scope, err := readScopeFromJSON()
 	if err == nil {
 		fmt.Println("Entries: ", len(scope.Scope))
 		for i := 0; i < len(scope.Scope); i++ {
@@ -37,7 +38,7 @@ func displayScope() {
 }
 
 // there needs to be a read from a list on which targets it should run
-func readScope() (Scope, error) {
+func readScopeFromJSON() (Scope, error) {
 	scopeFile, err := os.Open("scope.json")
 	if err != nil {
 		fmt.Println("Could not read json file", err)
@@ -55,11 +56,14 @@ func readScope() (Scope, error) {
 	return scope, nil
 }
 
+// sanity check for IPs
 func checkIP(ip string) error {
+
+	// net.ParseIP gives nil if not valid; accepts IPv4, IPv6 and mapped IPv6to4
 	ipCheck := net.ParseIP(ip)
 	if ipCheck != nil {
 		return nil
 	} else {
-		return errors.New("Could not parse IP.")
+		return errors.New("could not parse IP")
 	}
 }
