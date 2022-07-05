@@ -1,4 +1,5 @@
-#include <stdio.h>  
+#include <stdio.h>
+#include "JSONParser.h"  
 
 void readScopeFromJSON()
 {
@@ -9,8 +10,7 @@ void readScopeFromJSON()
     fread(scopeFileBuffer, 10000, 1, scopeFile);
 	fclose(scopeFile);
 
-    // No general parsing of this JSON - just for this case
-    printf("%s\n", scopeFileBuffer);
+    parseJSON(scopeFileBuffer);
 }
 
 void displayScope()
