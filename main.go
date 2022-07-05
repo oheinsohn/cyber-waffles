@@ -31,6 +31,7 @@ func displayScope() {
 		for i := 0; i < len(scope.Scope); i++ {
 			fmt.Println("Name: " + scope.Scope[i].Name)
 			fmt.Println("IP: " + scope.Scope[i].IP)
+			fmt.Println(discoverHost(scope.Scope[i].IP))
 		}
 	} else {
 		fmt.Println("An error occured: " + err.Error())
@@ -65,5 +66,16 @@ func checkIP(ip string) error {
 		return nil
 	} else {
 		return errors.New("could not parse IP")
+	}
+}
+
+// trying to connect to IP with tcp on 8080
+func discoverHost(ip string) (string, error) {
+	conn, err := net.Dial("tcp", ip+":8080")
+	if err != nil {
+		return "", errors.New("ERROR - could not connect to " + ip + " due to: " + err.Error())
+	} else {
+		conn.Close()
+		return "Connection to host established.", nil
 	}
 }
