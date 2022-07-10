@@ -5,9 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net"
-	"net/http"
 	"os"
 )
 
@@ -25,15 +23,6 @@ func main() {
 	fmt.Println("### CyberWaffles ###")
 	displayScope()
 	lazarusCyberWafflesUI()
-}
-
-func lazarusCyberWaffles(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "CyberWaffles UI")
-}
-
-func lazarusCyberWafflesUI() {
-	http.HandleFunc("/", lazarusCyberWaffles)
-	log.Fatal(http.ListenAndServe(":10000", nil))
 }
 
 // TODO: output to logging
