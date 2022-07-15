@@ -12,7 +12,7 @@ clean_go:
 	rm -f ./go/${BINARY}-go
 
 build_c:
-	gcc -o ./c/${BINARY}-c ./c/main.c
+	gcc -o ./c/${BINARY}-c ./c/main.c -lcurl
 	
 run_c:
 	./c/${BINARY}-c
