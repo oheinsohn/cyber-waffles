@@ -10,6 +10,10 @@ plan
 cyber-waffle-go
 cyber-waffle-c
 
+# Terraform
+*.hcl
+.terraform
+
 # Test binary, built with `go test -c`
 *.test
 
