@@ -1,7 +1,7 @@
 BINARY=cyber-waffle
 
 build_go:
-	go build -o ./go/${BINARY}-go ./go/main.go ./go/LazarusUI.go
+	go build -o ./go/${BINARY}-go ./go/main.go ./go/LazarusUI.go ./go/configWaffle.go
 	
 run_go:
 	./go/${BINARY}-go

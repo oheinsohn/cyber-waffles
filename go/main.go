@@ -20,9 +20,16 @@ type Target struct {
 }
 
 func main() {
-	fmt.Println("### CyberWaffles ###")
-	displayScope()
+	// mix
+		fmt.Println("### CyberWaffles ###")
+		displayScope()
+		config := configWaffle()
+	// form
+	fmt.Println("Jenkins installation in: ", EnvWafflePath, config.Path)
+	// bake
+	// eat
 	lazarusCyberWafflesUI()
+	
 }
 
 // TODO: output to logging
