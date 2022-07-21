@@ -10,6 +10,9 @@ plan
 cyber-waffle-go
 cyber-waffle-c
 
+# Jenkins
+Jenkins
+
 # Terraform
 *.hcl
 .terraform
