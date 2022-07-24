@@ -9,15 +9,14 @@ func main() {
 	// mix
 		fmt.Println("### CyberWaffles ###")
 		// getting the scope from resources
-		displayScope()
+		scope := getScope()
 		// use config from env or default
 		config := configWaffle()
 	
 	// form
-		jenkinsWaffle(config)
+		jenkinsWaffle(scope, config)
+
 		
-		
-	
 	// bake
 
 	// eat

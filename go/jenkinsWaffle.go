@@ -6,15 +6,24 @@ import (
 	"net/http"
 	"io"
 	"io/fs"
+	"strings"
 )
 
-func jenkinsWaffle(config *ConfigWaffle) {
+func jenkinsWaffle(scope Scope, config *ConfigWaffle) {
 	fmt.Println("Jenkins installation in: ", EnvWafflePath, config.Path)
 	os.Mkdir("./Jenkins", 0700)
-	err := downloadJenkins("https://get.jenkins.io/war-stable/2.277.4/jenkins.war", "./Jenkins/jenkins_2_277_4.war")
-	if err != nil {
-		fmt.Println("Jenkins WAR file download not possible as ", err)
+	var version = ""
+	for i := 0; i < len(scope.Scope); i++ {
+		version = strings.Replace(scope.Scope[i].App,"jenkins_", "", -1)
+		version = strings.Replace(version,"_", ".", -1)
+		version = strings.Replace(version,".war", "", -1)
+		fmt.Println("Downloading Jenkins: " + scope.Scope[i].App + " with version " + version)
+		err := downloadJenkins("https://get.jenkins.io/war-stable/"+version+"/jenkins.war", "./Jenkins/"+scope.Scope[i].App)
+		if err != nil {
+			fmt.Println("Jenkins WAR file download not possible as ", err)
+		}
 	}
+	
 	diretory_entries, err := discoverDirectory("./Jenkins")
 	if err != nil {
 		fmt.Println("Could not read directory ./Jenkins", err)
@@ -30,7 +39,7 @@ func downloadJenkins(url string, path string) (err error) {
 	if _, err := os.Stat(path); err == nil {
 		return fmt.Errorf("Jenkins WAR file %s already exists.", path)
 	}
-	fmt.Println("Download Jenkins")
+	fmt.Println("Download Jenkins Started")
 	warFile, err := os.Create(path)
 	if err != nil {
 		return err

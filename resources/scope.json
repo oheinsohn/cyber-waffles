@@ -3,12 +3,14 @@
       {
         "name": "localhost",
         "IP": "127.0.0.1",
-        "Port": "8080"
+        "Port": "8080",
+        "App": "jenkins_2_277_4.war"
       },
       {
         "name": "test",
         "IP": "127.0.0.1",
-        "Port": "8081"
+        "Port": "8080",
+        "App": "jenkins_2_346_2.war"
       }
     ]
   }

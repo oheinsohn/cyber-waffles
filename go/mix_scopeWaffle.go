@@ -17,10 +17,11 @@ type Target struct {
 	Name string `json:"name"`
 	IP   string `json:"IP"`
 	Port string `json:"Port"`
+	App string `json:"App"`
 }
 
 // TODO: output to logging
-func displayScope() {
+func getScope() (Scope) {
 	scope, err := readScopeFromJSON()
 	if err == nil {
 		fmt.Println("Entries: ", len(scope.Scope))
@@ -28,11 +29,13 @@ func displayScope() {
 			fmt.Println("Name: " + scope.Scope[i].Name)
 			fmt.Println("IP: " + scope.Scope[i].IP)
 			fmt.Println("Port: " + scope.Scope[i].Port)
+			fmt.Println("App: " + scope.Scope[i].App)
 			fmt.Println(discoverHost(scope.Scope[i].IP, scope.Scope[i].Port))
 		}
 	} else {
 		fmt.Println("An error occured: " + err.Error())
 	}
+	return scope
 }
 
 // there needs to be a read from a list on which targets it should run
@@ -51,7 +54,7 @@ func readScopeFromJSON() (Scope, error) {
 			return scope, err
 		}
 	}
-	return scope, nil
+	return scope, err
 }
 
 // sanity check for IPs
