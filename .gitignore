@@ -25,3 +25,8 @@ Jenkins
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Svelte
+/node_modules/
+/public/build/
+.DS_Store
